@@ -1,0 +1,23 @@
+>sudo docker stats
+>sudo docker ps -a
+>sudo docker build -t auth-image .
+>sudo docker run --name auth-api -d -p 8081:8081 auth-image
+>sudo docker stop 123444
+>sudo docker image ls
+>sudo docker rmi 123444
+>sudo docker rm 123444
+
+
+>sudo docker logs --tail 2500 auth-api
+
+Run cuando da error de timezone
+>sudo docker run -e TZ=America/Bogota -d --name auth-api -p 8080:8080 auth-image
+
+Para ingresar al contenedor
+>docker exec -it id_contenedor /bin/sh
+
+Ejecutar jar
+>nohup java -jar demo_maven-0.0.1-SNAPSHOT.jar > output.log &
+
+Ver log putput
+> tail -f output.logtail -f output.log

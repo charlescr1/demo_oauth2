@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: auth-api
+spec:
+  containers:
+  - name: auth-api
+    image: auth-image
+    imagePullPolicy: Never #Never para trabajar con images docker local; Always images de dockerhub
+    resources: # pendiente de verificación
+      requests:
+        memory: "64Mi"
+        cpu: "200m"
+      limits:
+        memory: "500Mi"
+        cpu: "500m"
+    readinessProbe:
+      httpGet:
+        path: /actuator/health
+        port: 8081
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    livenessProbe: # pendiente de verificación
+      tcpSocket:
+        port: 8081
+      initialDelaySeconds: 15
+      periodSeconds: 20
+    ports:
+    - containerPort: 8081
